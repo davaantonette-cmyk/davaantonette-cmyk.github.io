@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Antonette J. Dava · Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', system-ui, sans-serif; }
+    body { 
+      background: #0a0c08; 
+      background-image: radial-gradient(circle at 15% 25%, rgba(45, 65, 35, 0.07) 0%, transparent 35%),
+                        radial-gradient(circle at 85% 70%, rgba(160, 80, 255, 0.08) 0%, transparent 45%);
+      color: #d4d9ce; 
+      height: 100vh; 
+      overflow: hidden; 
+    }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: rgba(45, 65, 35, 0.06); border-radius: 20px; }
+    ::-webkit-scrollbar-thumb { background: #a855f7; border-radius: 20px; }
+    .heading { font-family: 'Outfit', sans-serif; }
+
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeInLeft { from { opacity: 0; transform: translateX(-40px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes fadeInRight { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes fadeInScale { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+    @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+    @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+    @keyframes floatSlow { 0%, 100% { transform: translateY(0px) rotate(0deg); } 33% { transform: translateY(-5px) rotate(2deg); } 66% { transform: translateY(5px) rotate(-2deg); } }
+    @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+    @keyframes borderGlow { 0%, 100% { border-color: rgba(45, 65, 35, 0.25); } 50% { border-color: rgba(160, 80, 255, 0.45); } }
+    @keyframes slideInLeft { from { opacity: 0; transform: translateX(-60px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes slideInRight { from { opacity: 0; transform: translateX(60px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes bounceIn { 0% { opacity: 0; transform: scale(0.3); } 50% { opacity: 1; transform: scale(1.05); } 70% { transform: scale(0.9); } 100% { transform: scale(1); } }
+    @keyframes shimmer { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
+
+    .app { display: flex; height: 100vh; width: 100vw; overflow: hidden; }
+
+    .sidebar {
+      width: 250px; 
+      background: rgba(10, 14, 8, 0.95); 
+      backdrop-filter: blur(12px);
+      border-right: 1px solid rgba(45, 65, 35, 0.12);
+      padding: 2rem 1.3rem; 
+      display: flex; 
+      flex-direction: column; 
+      flex-shrink: 0;
+      height: 100vh; 
+      overflow-y: auto;
+      animation: slideInLeft 0.8s ease-out;
+      box-shadow: 4px 0 20px rgba(0, 0, 0, 0.4);
+    }
+    .sidebar .brand { display: flex; align-items: center; gap: 12px; margin-bottom: 2.4rem; }
+    .sidebar .brand .logo-icon {
+      width: 42px; height: 42px; border-radius: 13px; 
+      background: linear-gradient(135deg, #2d4123, #a855f7);
+      display: flex; align-items: center; justify-content: center; color: #0a0c08; font-size: 1.15rem;
+      animation: float 3s ease-in-out infinite;
+      box-shadow: 0 6px 16px rgba(45, 65, 35, 0.2);
+    }
+    .sidebar .brand .name { 
+      font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 1.25rem; color: #e8ede2;
+      animation: fadeInRight 0.8s ease-out 0.3s backwards;
+    }
+    .sidebar .brand .status { 
+      display: flex; align-items: center; gap: 5px; font-size: .68rem; color: #8a9a7a; font-weight: 500;
+      animation: fadeInRight 0.8s ease-out 0.4s backwards;
+    }
+    .sidebar .brand .status .dot { 
+      width: 6px; height: 6px; border-radius: 50%; 
+      background: #a855f7; 
+      animation: pulse-dot 2s infinite; 
+    }
+    @keyframes pulse-dot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.6); } }
+
+    .sidebar nav { display: flex; flex-direction: column; gap: .2rem; flex: 1; }
+    .sidebar nav a {
+      display: flex; align-items: center; gap: 12px; padding: .68rem .9rem; border-radius: 12px;
+      color: #8a9a7a; text-decoration: none; font-weight: 500; font-size: .88rem;
+      transition: .3s ease;
+      animation: fadeInLeft 0.6s ease-out backwards;
+      position: relative;
+      overflow: hidden;
+      background: transparent;
+    }
+    .sidebar nav a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(45, 65, 35, 0.07), transparent);
+      transition: left 0.6s;
+    }
+    .sidebar nav a:hover::before { left: 100%; }
+    .sidebar nav a:nth-child(1) { animation-delay: 0.05s; }
+    .sidebar nav a:nth-child(2) { animation-delay: 0.1s; }
+    .sidebar nav a:nth-child(3) { animation-delay: 0.15s; }
+    .sidebar nav a:nth-child(4) { animation-delay: 0.2s; }
+    .sidebar nav a:nth-child(5) { animation-delay: 0.25s; }
+    .sidebar nav a:nth-child(6) { animation-delay: 0.3s; }
+    .sidebar nav a:nth-child(7) { animation-delay: 0.35s; }
+    .sidebar nav a:nth-child(8) { animation-delay: 0.4s; }
+    .sidebar nav a:nth-child(9) { animation-delay: 0.45s; }
+    .sidebar nav a i { width: 20px; font-size: .95rem; color: #a855f7; transition: .3s; }
+    .sidebar nav a:hover { 
+      background: rgba(45, 65, 35, 0.08); 
+      color: #e8ede2; 
+      transform: translateX(8px);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    }
+    .sidebar nav a:hover i { transform: scale(1.2) rotate(-10deg); color: #2d4123; }
+    .sidebar nav a.active { 
+      background: rgba(160, 80, 255, 0.12); 
+      color: #e8ede2; 
+      border: 1px solid rgba(160, 80, 255, 0.2);
+      animation: borderGlow 2s ease-in-out infinite;
+    }
+    .sidebar nav a.active i { color: #a855f7; }
+
+    .main { flex: 1; padding: 2.2rem 3rem; overflow-y: auto; height: 100vh; scroll-behavior: smooth; background: #0a0c08; }
+    .section-anchor { scroll-margin-top: 1.5rem; }
+
+    .top-bar {
+      display: flex; justify-content: space-between; align-items: center; margin-bottom: 2.2rem;
+      flex-wrap: wrap; gap: 1rem;
+      animation: fadeInDown 0.8s ease-out;
+    }
+    .top-bar .greeting h2 { 
+      font-family: 'Outfit', sans-serif; font-size: 1.7rem; font-weight: 600; 
+      background: linear-gradient(135deg, #2d4123, #a855f7, #2d4123, #a855f7);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradientShift 5s ease-in-out infinite;
+    }
+    .top-bar .greeting p { 
+      color: #8a9a7a; font-size: .85rem; margin-top: 2px; max-width: 600px; line-height: 1.5;
+      animation: fadeInUp 0.8s ease-out 0.3s backwards;
+    }
+    .top-bar .actions { display: flex; gap: 10px; }
+    .top-bar .actions button, .top-bar .actions a {
+      background: rgba(16, 20, 12, 0.8); border: 1px solid rgba(45, 65, 35, 0.10); padding: .65rem 1.3rem; border-radius: 24px;
+      font-weight: 500; color: #e8ede2; display: flex; align-items: center; gap: 8px; cursor: pointer;
+      font-size: .82rem; transition: .3s; backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      text-decoration: none;
+    }
+    .top-bar .actions button::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(45, 65, 35, 0.06), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+    .top-bar .actions button:hover::after { opacity: 1; }
+    .top-bar .actions button:hover, .top-bar .actions a:hover { 
+      border-color: #a855f7; 
+      background: rgba(160, 80, 255, 0.08);
+      box-shadow: 0 0 30px rgba(160, 80, 255, 0.06);
+      transform: translateY(-2px) scale(1.02);
+    }
+    .top-bar .actions button i, .top-bar .actions a i { color: #a855f7; transition: .3s; }
+    .top-bar .actions button:hover i, .top-bar .actions a:hover i { transform: rotate(15deg) scale(1.1); }
+
+    .section-card {
+      background: rgba(10, 14, 8, 0.92);
+      backdrop-filter: blur(15px);
+      border-radius: 28px;
+      padding: 2rem 2.1rem 2.3rem;
+      border: 1px solid rgba(45, 65, 35, 0.06);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.02);
+      margin-bottom: 1.6rem;
+      transition: .4s ease;
+      animation: fadeInUp 0.8s ease-out backwards;
+      position: relative;
+      overflow: hidden;
+    }
+    .section-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 70% 30%, rgba(45, 65, 35, 0.04), transparent 70%);
+      pointer-events: none;
+      transition: .6s;
+    }
+    .section-card:hover::before { transform: scale(1.2); }
+    .section-card:nth-child(1) { animation-delay: 0.1s; }
+    .section-card:nth-child(2) { animation-delay: 0.2s; }
+    .section-card:nth-child(3) { animation-delay: 0.3s; }
+    .section-card:nth-child(4) { animation-delay: 0.4s; }
+    .section-card:nth-child(5) { animation-delay: 0.5s; }
+    .section-card:nth-child(6) { animation-delay: 0.6s; }
+    .section-card:nth-child(7) { animation-delay: 0.7s; }
+    .section-card:nth-child(8) { animation-delay: 0.8s; }
+    .section-card:nth-child(9) { animation-delay: 0.9s; }
+    .section-card:hover {
+      border-color: rgba(160, 80, 255, 0.15);
+      box-shadow: 0 15px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(160, 80, 255, 0.04);
+      transform: translateY(-4px);
+    }
+
+    .card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 1.4rem; }
+    .card-header .icon-wrapper {
+      width: 40px; height: 40px; border-radius: 14px; 
+      background: rgba(45, 65, 35, 0.06);
+      display: flex; align-items: center; justify-content: center;
+      transition: .4s;
+    }
+    .section-card:hover .icon-wrapper {
+      animation: pulse 0.8s ease-in-out;
+      box-shadow: 0 0 30px rgba(160, 80, 255, 0.06);
+    }
+    .card-header i { font-size: 1rem; color: #a855f7; transition: .4s; }
+    .section-card:hover .card-header i { transform: scale(1.1) rotate(-5deg); color: #2d4123; }
+    .card-header h3 { 
+      font-family: 'Outfit', sans-serif; font-size: 1.05rem; font-weight: 600; color: #e8ede2;
+      position: relative;
+    }
+    .card-header h3::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #2d4123, #a855f7);
+      transition: width 0.5s;
+    }
+    .section-card:hover .card-header h3::after { width: 100%; }
+
+    .card-body { font-size: .92rem; line-height: 1.85; color: #c8d0be; }
+
+    .avatar-wrap { position: relative; width: 130px; margin: 0 auto 1.1rem; }
+    .avatar {
+      width: 130px; height: 130px; border-radius: 50%; 
+      background: linear-gradient(135deg, #2d4123, #a855f7);
+      display: flex; align-items: center; justify-content: center; font-family: 'Outfit', sans-serif; font-size: 2.4rem;
+      font-weight: 600; color: #0a0c08; border: 3px solid rgba(45, 65, 35, 0.2); 
+      box-shadow: 0 10px 40px rgba(45, 65, 35, 0.1);
+      object-fit: cover; background-size: cover; background-position: center; overflow: hidden;
+      animation: float 4s ease-in-out infinite;
+      transition: .4s;
+    }
+    .avatar:hover { transform: scale(1.02); box-shadow: 0 15px 60px rgba(160, 80, 255, 0.15); }
+    .mini-avatar {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: linear-gradient(135deg, #2d4123, #a855f7);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Outfit', sans-serif; font-size: .95rem;
+      font-weight: 600; color: #0a0c08;
+      object-fit: cover; background-size: cover; background-position: center;
+      overflow: hidden; flex-shrink: 0;
+      animation: float 4s ease-in-out infinite;
+      animation-delay: 0.5s;
+      transition: .4s;
+    }
+    .mini-avatar:hover { transform: scale(1.1) rotate(-5deg); }
+
+    .motto-box {
+      background: rgba(16, 20, 12, 0.7); padding: 1rem 1.3rem; border-radius: 16px; font-style: italic;
+      font-size: .88rem; color: #c8d0be; margin-top: 1.1rem; border-left: 3px solid #a855f7;
+      transition: .3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .motto-box::before {
+      content: '"';
+      position: absolute;
+      top: -10px;
+      left: 10px;
+      font-size: 4rem;
+      color: rgba(45, 65, 35, 0.06);
+      font-family: Georgia, serif;
+    }
+    .motto-box:hover { border-left-color: #2d4123; transform: scale(1.01); }
+
+    .mile-tag {
+      margin-top: 1.1rem; background: rgba(45, 65, 35, 0.06); padding: 6px 18px; border-radius: 20px; font-size: .75rem;
+      display: inline-block; color: #8a9a7a; font-weight: 500; border: 1px solid rgba(45, 65, 35, 0.06);
+      transition: .3s;
+      animation: floatSlow 5s ease-in-out infinite;
+    }
+    .mile-tag:hover { transform: scale(1.05); box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); border-color: #a855f7; }
+    .mile-tag i { margin-right: 6px; color: #a855f7; }
+
+    .bio-expanded {
+      background: rgba(16, 20, 12, 0.5);
+      padding: 1.2rem 1.5rem;
+      border-radius: 16px;
+      margin-top: 1rem;
+      font-size: .88rem;
+      line-height: 1.9;
+      color: #c8d0be;
+      border: 1px solid rgba(45, 65, 35, 0.04);
+      max-height: 300px;
+      overflow-y: auto;
+      transition: .3s;
+    }
+    .bio-expanded::-webkit-scrollbar { width: 4px; }
+    .bio-expanded::-webkit-scrollbar-thumb { background: #a855f7; border-radius: 10px; }
+    .bio-expanded p { margin-bottom: .8rem; }
+    .bio-expanded p:last-child { margin-bottom: 0; }
+    .bio-expanded strong { color: #a855f7; }
+
+    .info-line { 
+      display: flex; flex-wrap: wrap; margin-bottom: .55rem; padding-bottom: .55rem; 
+      border-bottom: 1px solid rgba(45, 65, 35, 0.04);
+      transition: .3s;
+    }
+    .info-line:hover { border-bottom-color: rgba(160, 80, 255, 0.10); }
+    .info-line:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .info-tag { 
+      min-width: 130px; color: #8a9a7a; font-size: .78rem; font-weight: 500; align-self: center;
+      transition: .3s;
+    }
+    .info-line:hover .info-tag { color: #a855f7; }
+    .info-value { color: #e8ede2; font-size: .9rem; font-weight: 500; }
+
+    .skill-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    .chip { 
+      background: rgba(16, 20, 12, 0.7); padding: 6px 16px; border-radius: 20px; 
+      font-size: .78rem; color: #c8d0be; font-weight: 500; 
+      border: 1px solid rgba(45, 65, 35, 0.06);
+      transition: .3s;
+      animation: fadeInScale 0.5s ease-out backwards;
+    }
+    .chip:nth-child(1) { animation-delay: 0.1s; }
+    .chip:nth-child(2) { animation-delay: 0.2s; }
+    .chip:nth-child(3) { animation-delay: 0.3s; }
+    .chip:nth-child(4) { animation-delay: 0.4s; }
+    .chip:hover {
+      transform: translateY(-3px) scale(1.05);
+      border-color: #a855f7;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      background: rgba(160, 80, 255, 0.04);
+    }
+    .chip.soft { 
+      background: rgba(45, 65, 35, 0.03); 
+      border-color: rgba(45, 65, 35, 0.06);
+      color: #8a9a7a; 
+    }
+    .chip.soft:hover {
+      background: rgba(160, 80, 255, 0.06);
+      border-color: #a855f7;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .skill-bar { margin-bottom: 1.05rem; }
+    .skill-bar .row { display: flex; justify-content: space-between; font-size: .83rem; color: #c8d0be; margin-bottom: 5px; font-weight: 500; }
+    .skill-bar .row span:last-child { color: #8a9a7a; }
+    .skill-bar .track { background: rgba(45, 65, 35, 0.06); height: 7px; border-radius: 10px; overflow: hidden; }
+    .skill-bar .fill { 
+      height: 100%; border-radius: 10px; width: 0%; 
+      transition: width 1.8s cubic-bezier(.4,0,.2,1); 
+      background: linear-gradient(90deg, #2d4123, #a855f7, #2d4123);
+      background-size: 300% 100%;
+      animation: shimmer 4s ease-in-out infinite;
+      position: relative;
+    }
+    .skill-bar .fill::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 10px;
+      height: 100%;
+      background: rgba(255,255,255,0.08);
+      border-radius: 10px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .project-item {
+      background: rgba(16, 20, 12, 0.7); border-radius: 16px; padding: 1.15rem 1.5rem; margin-bottom: .9rem;
+      border: 1px solid rgba(45, 65, 35, 0.04);
+      transition: .4s;
+      position: relative;
+      overflow: hidden;
+      animation: fadeInRight 0.6s ease-out backwards;
+    }
+    .project-item:nth-child(1) { animation-delay: 0.2s; }
+    .project-item:nth-child(2) { animation-delay: 0.4s; }
+    .project-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      background: linear-gradient(180deg, #2d4123, #a855f7);
+      transform: scaleY(0);
+      transition: transform 0.4s;
+    }
+    .project-item:hover::before { transform: scaleY(1); }
+    .project-item:hover {
+      border-color: rgba(160, 80, 255, 0.10);
+      box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+      transform: translateX(8px) scale(1.01);
+    }
+    .project-item h4 { 
+      font-family: 'Outfit', sans-serif; font-weight: 600; color: #e8ede2; font-size: 1rem;
+      transition: .3s;
+    }
+    .project-item:hover h4 { color: #a855f7; }
+    .project-item h4 i { color: #a855f7; margin-right: 8px; transition: .3s; }
+    .project-item:hover h4 i { transform: rotate(-10deg) scale(1.1); }
+    .project-item p { font-size: .85rem; color: #8a9a7a; margin: 4px 0; }
+    .project-item .status {
+      display: inline-block; background: rgba(45, 65, 35, 0.04); padding: 4px 14px; border-radius: 20px;
+      font-size: .7rem; color: #8a9a7a; font-weight: 600; margin-top: 4px;
+      transition: .3s;
+    }
+    .project-item:hover .status { background: rgba(160, 80, 255, 0.06); transform: scale(1.05); }
+    .project-item .status.completed { background: rgba(90, 90, 74, 0.04); color: #5a5a4a; }
+    .project-item:hover .status.completed { background: rgba(90, 90, 74, 0.06); }
+
+    .gallery-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-top: 10px; }
+    .gal-item {
+      position: relative; background: rgba(16, 20, 12, 0.6); border-radius: 14px; aspect-ratio: 1/1; 
+      transition: .4s;
+      overflow: hidden; background-size: cover; background-position: center; 
+      border: 1.5px solid rgba(45, 65, 35, 0.06);
+      animation: fadeInScale 0.5s ease-out backwards;
+    }
+    .gal-item:nth-child(1) { animation-delay: 0.1s; }
+    .gal-item:nth-child(2) { animation-delay: 0.2s; }
+    .gal-item:nth-child(3) { animation-delay: 0.3s; }
+    .gal-item:nth-child(4) { animation-delay: 0.4s; }
+    .gal-item:nth-child(5) { animation-delay: 0.5s; }
+    .gal-item:nth-child(6) { animation-delay: 0.6s; }
+    .gal-item:hover { 
+      border-color: #a855f7;
+      transform: scale(1.05) rotate(-1deg);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    }
+    .gal-item .gal-label {
+      position: absolute; bottom: 0; left: 0; right: 0; background: rgba(10, 14, 8, 0.9); color: #c8d0be;
+      font-size: .6rem; padding: 3px 6px; text-align: center; opacity: 0; transition: .4s; font-weight: 500;
+      transform: translateY(100%);
+    }
+    .gal-item:hover .gal-label { opacity: 1; transform: translateY(0); }
+
+    .contact-item { 
+      display: flex; align-items: center; gap: 12px; margin: 10px 0; color: #e8ede2; font-size: .9rem; font-weight: 500; 
+      transition: .4s;
+      animation: fadeInLeft 0.5s ease-out backwards;
+    }
+    .contact-item:nth-child(1) { animation-delay: 0.1s; }
+    .contact-item:nth-child(2) { animation-delay: 0.2s; }
+    .contact-item:nth-child(3) { animation-delay: 0.3s; }
+    .contact-item:nth-child(4) { animation-delay: 0.4s; }
+    .contact-item:hover { transform: translateX(8px) scale(1.02); }
+    .contact-item i { width: 22px; color: #a855f7; transition: .4s; }
+    .contact-item:hover i { transform: scale(1.3) rotate(-10deg); color: #2d4123; }
+
+    .resume-btn {
+      background: linear-gradient(135deg, #2d4123, #a855f7); 
+      padding: 12px 26px; border-radius: 24px; display: inline-flex; align-items: center;
+      color: #0a0c08; cursor: pointer; font-size: .85rem; font-weight: 600; 
+      transition: .4s; 
+      box-shadow: 0 10px 30px rgba(45, 65, 35, 0.1);
+      position: relative;
+      overflow: hidden;
+      border: none;
+    }
+    .resume-btn::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.12), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+    .resume-btn:hover::after { opacity: 1; }
+    .resume-btn:hover { transform: translateY(-4px) scale(1.03); box-shadow: 0 20px 60px rgba(160, 80, 255, 0.15); }
+    .resume-btn i { margin-right: 10px; transition: .3s; }
+    .resume-btn:hover i { transform: translateX(-5px) scale(1.1); }
+    .resume-btn.disabled { background: rgba(45, 65, 35, 0.12); color: #8a9a7a; cursor: not-allowed; box-shadow: none; }
+    .resume-btn.disabled:hover { transform: none; box-shadow: none; }
+
+    .cv-file-row {
+      display: flex; align-items: center; justify-content: space-between; margin-top: 14px; background: rgba(16, 20, 12, 0.7);
+      padding: .7rem 1rem; border-radius: 14px; font-size: .82rem;
+      animation: fadeInUp 0.5s ease-out;
+      border: 1px solid rgba(45, 65, 35, 0.04);
+    }
+    .cv-file-row .cv-name { display: flex; align-items: center; gap: 10px; color: #e8ede2; font-weight: 500; }
+    .cv-file-row .cv-name i { color: #a855f7; }
+    .cv-file-row .cv-remove { color: #5a5a4a; cursor: pointer; font-size: .78rem; transition: .3s; }
+    .cv-file-row .cv-remove:hover { transform: scale(1.2) rotate(90deg); text-decoration: underline; color: #4a4a3a; }
+
+    .footer {
+      margin-top: 1rem; padding-top: 1.3rem; border-top: 1px solid rgba(45, 65, 35, 0.04); display: flex;
+      flex-wrap: wrap; justify-content: space-between; align-items: center; color: #5a5a4a; font-size: .78rem;
+      animation: fadeInUp 0.8s ease-out 0.5s backwards;
+    }
+    .footer .social a { 
+      color: #5a5a4a; margin-left: 1.1rem; font-size: 1.05rem; transition: .4s; text-decoration: none; 
+      display: inline-block;
+      position: relative;
+    }
+    .footer .social a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #2d4123, #a855f7);
+      transition: width 0.3s;
+    }
+    .footer .social a:hover::after { width: 100%; }
+    .footer .social a:hover { color: #a855f7; transform: translateY(-4px) scale(1.15); }
+
+    .modal-overlay, .lightbox-overlay { display: none; position: fixed; inset: 0; background: rgba(10, 12, 8, 0.85); backdrop-filter: blur(8px); z-index: 999; justify-content: center; align-items: center; }
+    .modal-overlay.show, .lightbox-overlay.show { display: flex; animation: fadeInUp 0.4s ease-out; }
+    .modal { 
+      background: rgba(10, 14, 8, 0.98); 
+      border-radius: 28px; padding: 2rem 2.2rem; max-width: 420px; width: 90%; 
+      box-shadow: 0 10px 50px rgba(0, 0, 0, 0.6); border: 1px solid rgba(45, 65, 35, 0.06); 
+      animation: bounceIn 0.6s ease-out;
+    }
+    .modal h3 { font-family: 'Outfit', sans-serif; font-weight: 600; color: #e8ede2; margin-bottom: 1.1rem; font-size: 1.15rem; }
+    .modal input, .modal textarea, .modal select {
+      width: 100%; padding: .65rem .9rem; margin-bottom: .75rem; border-radius: 12px; background: rgba(16, 20, 12, 0.7);
+      border: 1px solid rgba(45, 65, 35, 0.06); color: #e8ede2; font-family: inherit; outline: none; font-size: .85rem; transition: .3s;
+    }
+    .modal input:focus, .modal textarea:focus, .modal select:focus { 
+      border-color: #a855f7; 
+      background: rgba(16, 20, 12, 0.9); 
+      box-shadow: 0 0 30px rgba(160, 80, 255, 0.04);
+      transform: scale(1.01);
+    }
+    .modal textarea { resize: vertical; min-height: 50px; }
+    .modal .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: .4rem; }
+    .modal .modal-actions button {
+      padding: .55rem 1.4rem; border-radius: 20px; border: 1px solid rgba(45, 65, 35, 0.06); background: rgba(16, 20, 12, 0.7);
+      color: #c8d0be; cursor: pointer; font-size: .82rem; font-weight: 500; transition: .3s;
+    }
+    .modal .modal-actions button.primary { background: linear-gradient(135deg, #2d4123, #a855f7); border-color: transparent; color: #0a0c08; }
+    .modal .modal-actions button:hover { border-color: #a855f7; transform: scale(1.05); }
+    .modal .modal-actions button.primary:hover { transform: scale(1.08); box-shadow: 0 5px 30px rgba(160, 80, 255, 0.08); }
+
+    .lightbox { 
+      background: rgba(10, 14, 8, 0.98); 
+      border-radius: 28px; padding: 2.4rem; max-width: 360px; width: 90%; 
+      text-align: center; box-shadow: 0 10px 50px rgba(0, 0, 0, 0.6); border: 1px solid rgba(45, 65, 35, 0.06); 
+      animation: bounceIn 0.6s ease-out;
+    }
+    .lightbox i { font-size: 2.6rem; color: #a855f7; margin-bottom: 1rem; animation: float 3s ease-in-out infinite; }
+    .lightbox img { max-width: 100%; max-height: 280px; border-radius: 14px; margin-bottom: 1rem; object-fit: cover; animation: fadeInScale 0.5s ease-out; }
+    .lightbox h4 { font-family: 'Outfit', sans-serif; font-size: 1.15rem; color: #e8ede2; margin-bottom: .4rem; font-weight: 600; }
+    .lightbox p { color: #8a9a7a; font-size: .85rem; margin-bottom: 1.2rem; }
+    .lightbox .lightbox-actions { display: flex; gap: 10px; justify-content: center; }
+    .lightbox button {
+      padding: .55rem 1.4rem; border-radius: 20px; border: none; background: rgba(45, 65, 35, 0.04);
+      color: #8a9a7a; cursor: pointer; font-size: .82rem; font-weight: 600; transition: .3s;
+    }
+    .lightbox button:hover { background: rgba(160, 80, 255, 0.08); transform: scale(1.05); }
+    .lightbox button.rust { background: rgba(90, 90, 74, 0.04); color: #5a5a4a; }
+    .lightbox button.rust:hover { background: rgba(90, 90, 74, 0.08); }
+
+    .toast-stack { position: fixed; bottom: 24px; right: 24px; display: flex; flex-direction: column; gap: 10px; z-index: 1100; max-width: 320px; }
+    .toast {
+      background: rgba(10, 14, 8, 0.95); border-left: 3px solid #a855f7; color: #e8ede2; padding: .85rem 1.1rem;
+      border-radius: 12px; font-size: .85rem; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5); 
+      animation: slideInRight 0.5s ease-out;
+      border: 1px solid rgba(45, 65, 35, 0.06); backdrop-filter: blur(10px);
+    }
+    .toast.rust { border-left-color: #5a5a4a; }
+
+    @media (max-width:768px) {
+      .sidebar { width: 72px; padding: 1.2rem .4rem; }
+      .sidebar .brand .name, .sidebar .brand .status, .sidebar nav a span { display: none; }
+      .sidebar nav a { justify-content: center; padding: .7rem; }
+      .top-bar .actions button span { display: none; }
+      .main { padding: 1.1rem; }
+      .section-card { padding: 1.5rem; }
+    }
+    @media (max-width:480px) {
+      .sidebar { width: 58px; }
+      .gallery-grid { gap: 7px; }
+      .modal, .lightbox { padding: 1.5rem; }
+      .section-card { padding: 1.2rem; }
+      .avatar, .avatar-wrap { width: 96px; height: 96px; }
+      .bio-expanded { max-height: 200px; padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="app">
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="brand">
+      <img class="mini-avatar" id="miniAvatar" src="profile.jpg" alt="Antonette's profile photo" />
+      <div>
+        <div class="name">Antonette</div>
+        <div class="status"><span class="dot"></span>Active</div>
+      </div>
+    </div>
+    <nav>
+      <a href="#home" class="active" onclick="scrollToSection('home')"><i class="fas fa-house"></i> <span>Home</span></a>
+      <a href="#about" onclick="scrollToSection('about')"><i class="fas fa-id-badge"></i> <span>About</span></a>
+      <a href="#education" onclick="scrollToSection('education')"><i class="fas fa-graduation-cap"></i> <span>Education</span></a>
+      <a href="#skills" onclick="scrollToSection('skills')"><i class="fas fa-layer-group"></i> <span>Skills</span></a>
+      <a href="#projects" onclick="scrollToSection('projects')"><i class="fas fa-folder-open"></i> <span>Projects</span></a>
+      <a href="#certificates" onclick="scrollToSection('certificates')"><i class="fas fa-medal"></i> <span>Certificates</span></a>
+      <a href="#gallery" onclick="scrollToSection('gallery')"><i class="fas fa-images"></i> <span>Gallery</span></a>
+      <a href="#resume" onclick="scrollToSection('resume')"><i class="fas fa-file-lines"></i> <span>Resume</span></a>
+      <a href="#contact" onclick="scrollToSection('contact')"><i class="fas fa-envelope"></i> <span>Contact</span></a>
+    </nav>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main" id="mainContent">
+    <div class="top-bar">
+      <div class="greeting">
+        <h2>🦫 Antonette · Portfolio</h2>
+        <p>I'm Antonette — building ideas, crafting code, and learning every day. Welcome to my space.</p>
+      </div>
+      <div class="actions">
+        <button onclick="openModal()"><i class="fas fa-plus"></i> <span>Add Project</span></button>
+        <a id="downloadCvBtn" href="DAVA RESUME.pdf" download="DAVA RESUME"><i class="fas fa-download"></i> <span>Download CV</span></a>
+      </div>
+    </div>
+
+    <!-- ===== HOME ===== -->
+    <div id="home" class="section-card section-anchor">
+      <div class="card-header">
+        <div class="icon-wrapper"><i class="fas fa-house"></i></div>
+        <h3>Home</h3>
+      </div>
+      <div class="card-body" style="text-align:center;">
+        <div class="avatar-wrap">
+          <img class="avatar" id="avatarCircle" src="profile.jpg" alt="Antonette's profile photo" />
+        </div>
+        <h3 class="heading" style="color:#e8ede2; font-weight:600; font-size:1.25rem;">ANTONETTE J. DAVA</h3>
+        <p style="color:#8a9a7a; font-size:.85rem;">« Antonette »</p>
+        <div class="motto-box">
+          <i class="fas fa-quote-left" style="margin-right:6px; opacity:.5; color:#a855f7;"></i>
+          Building the future, one line of code at a time.
+        </div>
+        <div class="mile-tag"><i class="fas fa-rocket"></i> Developer · Student · Creator</div>
+      </div>
+    </div>
+
+    <!-- ===== ABOUT ===== -->
+    <div id="about" class="section-card section-anchor">
+      <div class="card-header">
+        <div class="icon-wrapper"><i class="fas fa-id-badge"></i></div>
+        <h3>About Me</h3>
+      </div>
+      <div class="card-body">
+        <div class="info-line"><span class="info-tag">Full Name</span><span class="info-value">ANTONETTE J. DAVA</span></div>
+        <div class="info-line"><span class="info-tag">Age</span><span class="info-value">20</span></div>
+        <div class="info-line"><span class="info-tag">Born</span><span class="info-value">November 06, 2005</span></div>
+        <div class="info-line"><span class="info-tag">Address</span><span class="info-value">P-4 Caramcam Mangagoy, Surigao del Sur</span></div>
+        <div class="info-line"><span class="info-tag">Course</span><span class="info-value">BSIT - 1st Year</span></div>
+        <div class="info-line"><span class="info-tag">School</span><span class="info-value" style="color:#a855f7;">De La Salle John Bosco College</span></div>
+        
+        <!-- Updated Bio -->
+        <div class="bio-expanded">
+          <p><strong>About Me</strong></p>
+          <p>Antonette Dava is a dedicated and goal-oriented Bachelor of Science in Information Technology (BSIT) student from the Philippines. She is committed to achieving academic excellence while continuously developing her technical knowledge, problem-solving abilities, and professional skills. Known for her determination and willingness to learn, Antonette approaches every challenge as an opportunity for growth.</p>
+          <p>Throughout her academic journey, Antonette has demonstrated responsibility, perseverance, and a strong commitment to self-improvement. She values integrity, discipline, and lifelong learning, believing that these qualities are essential for success in the ever-evolving field of information technology. She is eager to expand her expertise through practical experiences and collaborative learning opportunities.</p>
+          <p>Currently pursuing her degree in Information Technology, Antonette aspires to become a competent and innovative IT professional. She hopes to contribute to the advancement of technology by developing meaningful digital solutions that create a positive impact on individuals, organizations, and society while continuously growing both personally and professionally.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== EDUCATION ===== -->
+    <div id="education" class="section-card section-anchor">
+      <div class="card-header">
+        <div class="icon-wrapper"><i class="fas fa-graduation-cap"></i></div>
+        <h3>Educational Timeline</h3>
+      </div>
+      <div class="card-body">
+        <div class="info-line"><span class="info-tag">Elementary</span><span class="info-value">Teofilo V. Fernandez Elementary School</span></div>
+        <div class="info-line"><span class="info-tag">High School</span><span class="info-value">Matina Pangi National High School</span></div>
+        <div class="info-line"><span class="info-tag">Senior High</span><span class="info-value">Amya Polytechnic College Inc.</span></div>
+        <div class="info-line"><span class="info-tag">College (Current)</span><span class="info-value" style="color:#a855f7;">De La Salle John Bosco College</span></div>
+      </div>
+    </div>
+
+    <!-- ===== SKILLS ===== -->
+    <div id="skills" class="section-card section-anchor">
+      <div class="card-header">
+        <div class="icon-wrapper"><i class="fas fa-layer-group"></i></div>
+        <h3>Technical Skills</h3>
+      </div>
+      <div class="card-body">
+        <div style="margin-bottom:10px;"><strong style="color:#e8ede2; font-size:.85rem;">Programming</strong></div>
+        <div class="skill-bar"><div class="row"><span>HTML / CSS</span><span>78%</span></div><div class="track"><div class="fill" style="width:78%;"></div></div></div>
+        <div class="skill-bar"><div class="row"><span>JavaScript</span><span>60%</span></div><div class="track"><div class="fill" style="width:60%;"></div></div></div>
+        <div class="skill-bar"><div class="row"><span>Python</span><span>55%</span></div><div class="track"><div class="fill" style="width:55%;"></div></div></div>
+        <div class="skill-bar"><div class="row"><span>Java</span><span>48%</span></div><div class="track"><div class="fill" style="width:48%;"></div></div></div>
+
+        <div style="margin-top:14px; margin-bottom:8px;"><strong style="color:#e8ede2; font-size:.85rem;">Software & Tools</strong></div>
+        <div class="skill-chips"><span class="chip">MS Office</span><span class="chip">VS Code</span><span class="chip">Canva</span><span class="chip">Git</span><span class="chip">Figma</span></div>
+
+        <div style="margin-top:12px; margin-bottom:8px;"><strong style="color:#e8ede2; font-size:.85rem;">Soft Skills</strong></div>
+        <div class="skill-chips"><span class="chip soft">Problem Solving</span><span class="chip soft">Critical Thinking</span><span class="chip soft">Time Management</span><span class="chip soft">Teamwork</span></div>
+      </div>
+    </div>
+
+    <!-- ===== PROJECTS ===== -->
+    <div id="projects" class="section-card section-anchor">
+      <div class="card-header">
+        <div class="icon-wrapper"><i class="fas fa-folder-open"></i></div>
+        <h3>Projects <span style="font-size:.7rem; color:#8a9a7a; font-weight:400; margin-left:6px;" id="projectCount">(2)</span></h3>
+      </div>
+      <div class="card-body" id="projectList">
+        <div class="project-item" data-id="1">
+          <h4><i class="fas fa-robot"></i> TaskMind · AI To-Do Assistant</h4>
+          <p>An intelligent task management web app that uses natural language processing to categorize tasks, set priorities, and suggest optimal schedules based on user habits and deadlines.</p>
+          <p style="color:#8a9a7a; font-size:.8rem;"><i class="fas fa-code"></i> HTML, CSS, JavaScript, TensorFlow.js</p>
+          <span class="status"><i class="fas fa-spinner"></i> In Progress</span>
+        </div>
+        <div class="project-item" data-id="2">
+          <h4><i class="fas fa-leaf"></i> EcoTrack · Carbon Footprint Tracker</h4>
+          <p>A sustainability-focused web tool that helps users log daily activities, calculate their carbon footprint, and receive personalized recommendations to reduce environmental impact.</p>
+          <p style="color:#8a9a7a; font-size:.8rem;"><i class="fas fa-code"></i> HTML, CSS, JavaScript, Chart.js, LocalStorage</p>
+          <span class="status completed"><i class="fas fa-check"></i> Completed</span>
+        </div>
+      </div>
+      <button onclick="openModal()" style="margin-top:10px; background:rgba(16,20,12,0.7); border:1px solid rgba(45,65,35,0.06); color:#c8d0be; padding:8px 22px; border-radius:20px; cursor:pointer; font-size:.85rem; font-weight:500; transition:.3s;">
+        <i class="fas fa-plus"></i> Add Project
+      </button>
+    </div>
+
+    <!-- ===== CERTIFICATES ===== -->
+    <div id="certificates" class="section-card section-anchor">
+      <div class="card-header">
+        <div class="icon-wrapper"><i class="fas fa-medal"></i></div>
+        <h3>Credentials & Awards</h3>
+      </div>
+      <div class="card-body">
+        <div class="info-line"><span class="info-tag">Trainings</span><span class="info-value">N/A</span></div>
+        <div class="info-line"><span class="info-tag">Seminars</span><span class="info-value">N/A</span></div>
+        <div class="info-line"><span class="info-tag">Certificates</span><span class="info-value">🏅 Honor Certificate</span></div>
+        <div class="info-line"><span class="info-tag">Academic Awards</span><span class="info-value">⭐ Honor Award</span></div>
+      </div>
+    </div>
+
+    <!-- ===== GALLERY ===== -->
+    <div id="gallery" class="section-card section-anchor">
+      <div class="card-header">
+        <div class="icon-wrapper"><i class="fas fa-images"></i></div>
+        <h3>Gallery</h3>
+      </div>
+      <div class="card-body">
+        <p style="color:#8a9a7a; font-size:.78rem; margin-bottom:8px;">
+          <i class="fas fa-user"></i> Personal · <i class="fas fa-school"></i> School · <i class="fas fa-users"></i> Org · <i class="fas fa-hand-holding-heart"></i> Community
+        </p>
+        <div class="gallery-grid" id="galleryGrid">
+          <div class="gal-item" style="background-image:url('dance.jpg')">
+            <span class="gal-label">Dance</span>
+          </div>
+          <div class="gal-item" style="background-image:url('honor friends.jpg')">
+            <span class="gal-label">Honor</span>
+          </div>
+          <div class="gal-item" style="background-image:url('me.jpg')">
+            <span class="gal-label">Me</span>
+          </div>
+        </div>
+        <p style="font-size:.68rem; color:#5a5a4a; margin-top:8px;">To change a photo, replace its image link in the code.</p>
+      </div>
+    </div>
+
+    <!-- ===== RESUME ===== -->
+    <div id="resume" class="section-card section-anchor">
+      <div class="card-header">
+        <div class="icon-wrapper"><i class="fas fa-file-lines"></i></div>
+        <h3>Curriculum Vitae</h3>
+      </div>
+      <div class="card-body">
+        <div class="cv-file-row">
+          <div class="cv-name"><i class="fas fa-file-pdf"></i> <span>DAVA RESUME</span></div>
+          <a class="resume-btn" href="DAVA RESUME.pdf" download="DAVA RESUME" style="padding:8px 20px; font-size:.8rem;"><i class="fas fa-download"></i> Download</a>
+        </div>
+        <p style="font-size:.68rem; color:#5a5a4a; margin-top:8px;">To update this, replace the file link in the code with your own CV link.</p>
+        <div style="margin-top:16px;">
+          <div class="info-line"><span class="info-tag">Work Experience</span><span class="info-value">N/A</span></div>
+          <div class="info-line"><span class="info-tag">References</span><span class="info-value">Available upon request</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== CONTACT ===== -->
+    <div id="contact" class="section-card section-anchor">
+      <div class="card-header">
+        <div class="icon-wrapper"><i class="fas fa-envelope"></i></div>
+        <h3>Get In Touch</h3>
+      </div>
+      <div class="card-body">
+        <div class="contact-item"><i class="fas fa-envelope"></i> davaantonette@gmail.com</div>
+        <div class="contact-item"><i class="fas fa-phone-alt"></i> 0985 195 0719</div>
+        <div class="contact-item"><i class="fab fa-facebook"></i> Antonette Dava</div>
+        <div class="contact-item"><i class="fab fa-linkedin"></i> (Optional)</div>
+        <div style="background:rgba(16,20,12,0.7); padding:14px; border-radius:14px; margin-top:12px; font-size:.88rem; border:1px solid rgba(45,65,35,0.04);">
+          <i class="fas fa-comment" style="color:#a855f7;"></i> Contact Form: 0985 195 0719
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <div>© 2026 ANTONETTE J. DAVA · All Rights Reserved</div>
+      <div class="social">
+        <a href="#" onclick="showToast('Facebook: Antonette Dava')"><i class="fab fa-facebook"></i></a>
+        <a href="#" onclick="showToast('Instagram: @antonette.dava')"><i class="fab fa-instagram"></i></a>
+        <a href="#" onclick="showToast('GitHub: antonette-dev')"><i class="fab fa-github"></i></a>
+        <a href="#" onclick="showToast('YouTube: Antonette Dava')"><i class="fab fa-youtube"></i></a>
+        <span style="margin-left:.8rem;"><i class="far fa-calendar-alt"></i> Updated: 2026-07-05</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="projectModal">
+  <div class="modal">
+    <h3><i class="fas fa-plus-circle" style="color:#a855f7;"></i> New Project</h3>
+    <input type="text" id="projectName" placeholder="Project Title" />
+    <input type="text" id="projectTech" placeholder="Technologies" />
+    <textarea id="projectDesc" placeholder="Description"></textarea>
+    <select id="projectStatus">
+      <option value="In Progress">In Progress</option>
+      <option value="Completed">Completed</option>
+      <option value="Planning">Planning</option>
+    </select>
+    <div class="modal-actions">
+      <button onclick="closeModal()">Cancel</button>
+      <button class="primary" onclick="addProject()">Add</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOASTS -->
+<div class="toast-stack" id="toastStack"></div>
+
+<script>
+  // ----- state -----
+  let projectId = 3;
+
+  // ----- toasts -----
+  function showToast(message, variant) {
+    const stack = document.getElementById('toastStack');
+    const toast = document.createElement('div');
+    toast.className = 'toast' + (variant === 'rust' ? ' rust' : '');
+    toast.textContent = message;
+    stack.appendChild(toast);
+    setTimeout(() => {
+      toast.style.transition = 'opacity .3s';
+      toast.style.opacity = '0';
+      setTimeout(() => toast.remove(), 300);
+    }, 3200);
+  }
+
+  // ----- projects -----
+  function openModal() {
+    document.getElementById('projectModal').classList.add('show');
+    document.getElementById('projectName').value = '';
+    document.getElementById('projectTech').value = '';
+    document.getElementById('projectDesc').value = '';
+    document.getElementById('projectStatus').value = 'In Progress';
+  }
+  function closeModal() {
+    document.getElementById('projectModal').classList.remove('show');
+  }
+  function addProject() {
+    const name = document.getElementById('projectName').value.trim();
+    const tech = document.getElementById('projectTech').value.trim();
+    const desc = document.getElementById('projectDesc').value.trim();
+    const status = document.getElementById('projectStatus').value;
+    if (!name) { showToast('Enter a project title.', 'rust'); return; }
+
+    const list = document.getElementById('projectList');
+    const item = document.createElement('div');
+    item.className = 'project-item';
+    item.dataset.id = projectId++;
+
+    const statusClass = status === 'Completed' ? 'completed' : '';
+    const icon = status === 'Completed' ? 'fa-check' : status === 'In Progress' ? 'fa-spinner' : 'fa-clock';
+
+    item.innerHTML = `
+      <h4><i class="fas fa-folder"></i> ${name}</h4>
+      <p>${desc || 'No description.'}</p>
+      <p style="color:#8a9a7a; font-size:.8rem;"><i class="fas fa-code"></i> ${tech || 'Not specified'}</p>
+      <span class="status ${statusClass}"><i class="fas ${icon}"></i> ${status}</span>
+    `;
+    list.appendChild(item);
+    updateProjectCount();
+    closeModal();
+    showToast(`✅ Project "${name}" added.`);
+  }
+  function updateProjectCount() {
+    const count = document.querySelectorAll('#projectList .project-item').length;
+    document.getElementById('projectCount').textContent = `(${count})`;
+  }
+
+  // ----- scroll & nav -----
+  function scrollToSection(id) {
+    const section = document.getElementById(id);
+    if (section) {
+      const main = document.getElementById('mainContent');
+      const offset = 80;
+      const targetPosition = section.offsetTop - offset;
+      main.scrollTo({ top: targetPosition, behavior: 'smooth' });
+    }
+    document.querySelectorAll('.sidebar nav a').forEach(l => l.classList.remove('active'));
+    document.querySelectorAll('.sidebar nav a').forEach(link => {
+      if (link.getAttribute('href') === `#${id}`) link.classList.add('active');
+    });
+  }
+
+  const main = document.getElementById('mainContent');
+  const sections = ['home','about','education','skills','projects','certificates','gallery','resume','contact'];
+  main.addEventListener('scroll', function() {
+    let current = '';
+    const offset = 100;
+    sections.forEach(id => {
+      const section = document.getElementById(id);
+      if (section) {
+        const rect = section.getBoundingClientRect();
+        const mainRect = main.getBoundingClientRect();
+        if (rect.top - mainRect.top < offset) current = id;
+      }
+    });
+    document.querySelectorAll('.sidebar nav a').forEach(l => l.classList.remove('active'));
+    document.querySelectorAll('.sidebar nav a').forEach(link => {
+      if (link.getAttribute('href') === `#${current}`) link.classList.add('active');
+    });
+  });
+
+  // ----- close modal -----
+  document.getElementById('projectModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { closeModal(); }
+  });
+
+  // ----- init -----
+  updateProjectCount();
+  setTimeout(() => {
+    document.querySelectorAll('.skill-bar .fill').forEach(el => {
+      const w = el.style.width;
+      el.style.width = '0%';
+      setTimeout(() => { el.style.width = w; }, 150);
+    });
+  }, 400);
+</script>
+</body>
+</html>
